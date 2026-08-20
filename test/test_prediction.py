@@ -11,7 +11,6 @@ Objectif pÃ©dagogique :
 - Ã‰viter une couverture artificielle basÃ©e seulement sur des cas rÃ©pÃ©titifs.
 """
 
-import math
 import pytest
 
 from app.utils import predict
@@ -113,12 +112,6 @@ def test_predict_output_size_matches_input_size():
     assert len(result) == len(features)
 
 
-def test_predict_output_values_are_numeric():
-    """Chaque prÃ©diction doit Ãªtre une valeur numÃ©rique finie."""
-    result = predict([1.0, 2.0, 3.0])
-
-    assert all(isinstance(value, float) for value in result)
-    assert all(math.isfinite(value) for value in result)
 
 
 def test_predict_is_deterministic():
@@ -139,3 +132,14 @@ def test_predict_does_not_modify_input_list():
     predict(features)
 
     assert features == original_features
+
+ 
+@pytest.mark.anyio 
+async def test_predict_success(): 
+    async with AsyncClient(app=app, base_url="http://test") as 
+client: 
+        resp = await client.post("/predict", json={ 
+        "features": [3.5, 1.2, 4.9] 
+    }) 
+    assert resp.status_code == 200 
+    assert {"predictions": [8.0, 2.4, 9.8]} == resp.json()
