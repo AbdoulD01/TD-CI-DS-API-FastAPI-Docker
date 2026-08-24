@@ -29,6 +29,7 @@ jobs:
           flake8 app tests --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics
   test:
     runs-on: ubuntu-24.04
+    needs: linting
     steps:
       # Récupérer le code
       - name: Checkout code
