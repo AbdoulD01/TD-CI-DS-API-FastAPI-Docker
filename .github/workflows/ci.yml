@@ -51,7 +51,7 @@ jobs:
           pytest --maxfail=1 --disable-warnings -q --cov=app --cov-report=xml --cov-report=term-missing
   SafetyScan:
     runs-on: ubuntu-24.04
-    needs: test
+    needs: [test, linting]
     steps:
       # Récupérer le code
       - name: Checkout code
