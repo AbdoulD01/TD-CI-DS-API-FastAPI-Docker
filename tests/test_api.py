@@ -43,4 +43,4 @@ def test_predict_features_manquant():
     )
 
     assert response.status_code == 422
-    assert response.json()["message"] == "word feature missed!"
+    assert response.json()["detail"][0]["msg"] == "Field required"
