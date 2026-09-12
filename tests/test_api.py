@@ -14,6 +14,16 @@ def test_predict_success():
     assert response.json() == {"predictions": [2.0, 4.0, 6.0]}
 
 # -----------------------------------------------------------------------------
+# Cas resultats faux : resultas attendus volontairement faux
+# -----------------------------------------------------------------------------
+def test_predict_success():
+    response = client.post("/predict", json={
+    "features": [1.0, 2.0, 3.0]
+    })
+    assert response.status_code == 422
+    assert response.json() == {"predictions": [3.0, 5.0, 9.0]}
+
+# -----------------------------------------------------------------------------
 # Cas invalides : données ne respectant pas les préconditions attendues
 # -----------------------------------------------------------------------------
 def test_predict_unprocessable_entity():
