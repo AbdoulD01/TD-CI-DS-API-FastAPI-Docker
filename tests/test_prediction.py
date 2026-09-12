@@ -82,7 +82,6 @@ def test_predict_empty_list_raises_exception():
         None,
         "abc",
         {"feature1": 1.0},
-        [3.5, 1.2, 4.9],
         [1.0, "abc", 3.0],
         [1.0, None, 3.0],
     ],

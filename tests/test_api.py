@@ -36,7 +36,7 @@ def test_predict_smoke():
 # ------------------------------------------------------------------------------
 # Cas JSON incorrect
 # -------------------------------------------------------------------------------
-def test_predict_features_manquant(client):
+def test_predict_features_manquant():
     response = client.post(
         "/predict",
         json={"data": [3.5, 1.2, 4.9]}
