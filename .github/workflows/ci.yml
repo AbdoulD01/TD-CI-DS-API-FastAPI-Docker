@@ -10,8 +10,25 @@ permissions:
   contents: read
 
 jobs:
+  SafetyScan:
+    runs-on: ubuntu-24.04
+    steps:
+      # Récupérer le code
+      - name: Checkout code
+        uses: actions/checkout@v4
+      # Configurer Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      # Vérifier la sécurité des dépendabces (optionel)
+      - name: Check for security issues
+        run: |
+          pip install safety
+          safety check  -requirements.txt || true 
   test:
     runs-on: ubuntu-24.04
+    needs: SafetyScan
     steps:
       # Récupérer le code
       - name: Checkout code
@@ -31,9 +48,10 @@ jobs:
       - name: Run tests
         run: |
           export PYTHONPATH=$(pwd)
-          pytest --maxfail=1 --disable-warnings -q 
+          pytest --maxfail=1 --disable-warnings -q cov=app --cov-report=xml --cov-report=term-missing 
           
-          
+
+               
           
 
 
