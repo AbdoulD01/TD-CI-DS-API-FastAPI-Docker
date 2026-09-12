@@ -44,3 +44,11 @@ def test_predict_features_manquant():
 
     assert response.status_code == 422
     assert response.json()["detail"][0]["msg"] == "Field required"
+
+def test_predict_features_manquant():
+    response = client.post(
+        "/predict",
+        json=[3.5, 1.2, 4.9]
+    )
+
+    assert response.status_code == 422
