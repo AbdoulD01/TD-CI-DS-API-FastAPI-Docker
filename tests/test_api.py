@@ -33,12 +33,3 @@ def test_predict_smoke():
     assert response.status_code == 200
     assert response.json()["message"] == "API is up and running!"
 
-# -----------------------------------------------------------------------------
-# Cas invalides : données ne respectant pas les préconditions attendues
-# -----------------------------------------------------------------------------
-def test_predict_unprocessable_entity():
-    response = client.post("/predict", json={
-    [3.5, 1.2, 4.9]
-    })
-    assert response.status_code == 422
-    assert response.json()["detail"][0]["msg"] == "Feature missed"

@@ -26,6 +26,7 @@ from app.utils import predict
         ([1.0, 2.0, 3.0], [2.0, 4.0, 6.0]),
         ([5.0], [10.0]),
         ([1.5, 2.5], [3.0, 5.0]),
+        
     ],
 )
 
@@ -81,6 +82,7 @@ def test_predict_empty_list_raises_exception():
         None,
         "abc",
         {"feature1": 1.0},
+        [3.5, 1.2, 4.9],
         [1.0, "abc", 3.0],
         [1.0, None, 3.0],
     ],
