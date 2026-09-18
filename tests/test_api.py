@@ -21,7 +21,7 @@ def test_predict_success():
     "features": [6.0, 2.5, 4.2]
     })
     assert response.status_code != 200
-    #assert response.json() == {"predictions": [3.0, 5.0, 9.0]}
+    assert response.json() == {"predictions": [3.0, 5.0, 9.0]}
 
 # -----------------------------------------------------------------------------
 # Cas invalides : données ne respectant pas les préconditions attendues
